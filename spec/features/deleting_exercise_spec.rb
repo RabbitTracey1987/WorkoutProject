@@ -11,10 +11,9 @@ RSpec.feature "Editing Exercise" do
     visit "/"
     click_link "My Lounge"
     path= "/users/#{@john.id}/exercises/#{@john_exercise.id}"
-    link= "//a[href=\'#{path}\'] and .//text()='Destroy']"
+    link= "//a[contains(@href,\'#{path}\') and .//text()='Destroy']"
     find(:xpath,link).click
-    fill_in "Duration", with: 40
-    click_button "Update Exercise"
+    
   	expect(page).to have_content("Exercise has been deleted")
 	end
  
