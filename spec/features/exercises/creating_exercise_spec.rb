@@ -3,13 +3,12 @@ RSpec.feature "Creating Exercise" do
 	before do
 		@john = User.create!(email: "john@example.com", password: "password")
 		login_as(@john)
+    visit "/"
+    click_link "My Lounge"
+    click_link "New Workout"
+    expect(page).to have_link("Back")
 	end
 	scenario "with valid inputs" do 
-  	visit "/"
-  	click_link "My Lounge"
-  	click_link "New Workout"
-  	expect(page).to have_link("Back")
-
   	fill_in "Duration", with: 70
   	fill_in "Workout Details", with: "Weight Lifting"
   	fill_in "Activity date", with: "2018-08-24"
@@ -21,11 +20,6 @@ RSpec.feature "Creating Exercise" do
   	expect(exercise.user_id).to eq(@john.id)
 	end
   scenario "with invalid inputs" do 
-    visit "/"
-    click_link "My Lounge"
-    click_link "New Workout"
-    expect(page).to have_link("Back")
-
     fill_in "Duration", with: ''
     fill_in "Workout Details", with: ""
     fill_in "Activity date", with: ""
