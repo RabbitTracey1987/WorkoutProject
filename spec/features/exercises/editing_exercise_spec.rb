@@ -10,16 +10,14 @@ RSpec.feature "Editing Exercise" do
 	scenario "with valid data succeed" do 
     visit "/"
     click_link "My Lounge"
-    path= "/user/#{@john.id}/exercises/#{@john_exercise.id}/edit"
+    path= "/users/#{@john.id}/exercises/#{@john_exercise.id}/edit"
     link= "a[href=\'#{path}\']"
-    find(link).click_link
-    fill_in "Duration", with 40
+    find(link).click
+    fill_in "Duration", with: 40
     click_button "Update Exercise"
-
   	expect(page).to have_content("Exercise has been updated")
     expect(page).to have_content(40)
     expect(page).not_to have_content(30)
-
 	end
  
 end
