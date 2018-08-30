@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :exercises
   has_many :friendships
-  has_many :friends,through: :friendships, class_name: "User"
+  has_many :friends, through: :friendships, class_name: "User"
   validates :first_name, presence: true
   validates :last_name, presence: true
   self.per_page=10
